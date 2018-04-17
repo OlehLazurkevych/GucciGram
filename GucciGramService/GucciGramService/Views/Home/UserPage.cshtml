@@ -1,0 +1,77 @@
+﻿@model User
+
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html>
+<head>
+    <title>GucciGram</title>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/x-icon" href="/images/gg.png">
+    <link rel="stylesheet" href="/css/style.css" media="all">
+</head>
+<body>
+    <div class="header">
+        <div class="mid">
+            <header>
+                <div class="topmenu">
+                    <aside>
+                        <a asp-action="Index">Main</a>
+                        <a asp-action="LoginForm">Login</a>
+                        <a asp-action="RegistrationForm">Register</a>
+                    </aside>
+                </div>
+
+                <a asp-action="Index">
+                    <img src="/images/GG-logo.png" width="75" height="95" alt="GucciGram" title="GucciGram">
+                </a>
+
+            </header>
+        </div>
+
+    </div>
+
+    <div class="menu"></div>
+
+    <div class="content">
+
+        <div class="mid">
+            <div class="fon">
+                <div class="block">
+
+
+                    <img src="/images/ggf.png" width="290" height="75" alt="GucciGram" title="GucciGram" class="center-img" />
+
+                    <div class="anons">
+
+                        <img src="/avatars/image.jpg" width="125" height="125" class="leftimg" />
+                        <div class="info11">
+                            Name: @Model.UserName
+                            <p>Email: @Model.Email</p>
+                            <form action="account.html" method="post">
+                                <p>Info:</p>
+                                <textarea rows="2" cols="40" name="text"></textarea>
+                                <p><input type="submit" value="Done!" class="l"></p>
+                            </form>
+
+                        </div>
+                        <input type="submit" value="New profile photo" class="pupload-btm" style="width:120px;height:25px" />
+                        <div class="info">
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="clear"> </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="down">
+        <div class="mid"></div>
+        2018 GucciGram &copy;
+    </div>
+</body>
+</html>
