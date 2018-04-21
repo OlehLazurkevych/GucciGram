@@ -24,8 +24,8 @@ namespace GucciGramService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["Data:GucciGramDatabase:ConnectionString"]));
-            services.AddTransient<IUserRepository, EFUserRepository>();
+            services.AddDbContext<IdentityDbContext>(options => options.UseSqlServer(Configuration["Data:GucciGramDatabase:IdentityConnectionString"]));
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<IdentityDbContext>().AddDefaultTokenProviders();
             services.AddMvc();
         }
 
@@ -44,6 +44,7 @@ namespace GucciGramService
 
             app.UseStatusCodePages();
             app.UseStaticFiles();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
@@ -51,8 +52,6 @@ namespace GucciGramService
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-
-            DBAccess.SetContext(app);
         }
     }
 }
