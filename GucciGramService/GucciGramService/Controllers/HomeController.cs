@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using GucciGramService.Models;
-using System.Linq;
-using System;
+using Microsoft.AspNetCore.Identity;
 
 namespace GucciGramService.Controllers
 {
@@ -9,6 +10,7 @@ namespace GucciGramService.Controllers
     {
         /*   Action methods   */
 
+        [AllowAnonymous]
         public ViewResult Index()
         {
             // Load main page

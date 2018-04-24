@@ -1,85 +1,33 @@
 ﻿@model GucciGramService.Models.RegistrationFormResponse
 
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>GG registration form</title>
-    <meta charset="UTF-8">
-    <link rel="shortcut icon" type="image/x-icon" href="/images/gg.png">
-    <link rel="stylesheet" href="/css/style.css" media="all">
-</head>
-<body>
-    <div class="header">
-        <div class="mid">
-            <header>
-                <div class="topmenu">
-                    <aside>
-                        <a asp-action="Index">Main</a>
-                        <a asp-action="LoginForm">Login</a>
-                        <a asp-action="RegistrationForm">Register</a>
-                    </aside>
-                </div>
-
-                <a asp-action="Index">
-                    <img src="/images/GG-logo.png" width="75" height="95" alt="GucciGram" title="GucciGram">
-                </a>
-
-            </header>
-        </div>
-    </div>
-
-    <div class="menu"></div>
-
-    <div class="content">
-        <div class="mid">
-            <div class="fon">
-                <div class="block">
-                    <img src="/images/ggf.png" width="290" height="75" alt="GucciGram" title="GucciGram" class="center-img" />
-                    <div class="anons">
-                        <form asp-action="RegistrationForm" method="post">
-                            <div asp-validation-summary="All"></div>
-                            <table>
-                                <tr>
-                                    <td><label asp-for="UserName">Your Name on page:</label></td>
-                                    <td><input asp-for="UserName" type="text" placeholder="Enter Your Name" /></td>
-                                </tr>
-                                <tr>
-                                    <td><label asp-for="Email">Your email:</label></td>
-                                    <td><input asp-for="Email" type="email" placeholder="Enter Your email" /></td>
-                                </tr>
-                                <tr>
-                                    <td><label asp-for="Password">Your password:</label></td>
-                                    <td><input asp-for="Password" type="text" placeholder="Enter Your password" /></td>
-                                </tr>
-                                <tr>
-                                    <td><label asp-for="GenderID">Gender:</label></td>
-                                    <td>
-                                        <select asp-for="GenderID">
-                                            <option value="">Choose an option</option>
-                                            <option value="1">Gentleman</option>
-                                            <option value="2">Mademoiselle</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                            </table>
-
-                            <button type="submit" class="centre-btm" style="width:90px;height:25px">Complete</button>
-
-                        </form>
-                    </div>
-                </div>
-                <div class="clear"> </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="down">
-        <div class="mid"></div>
-        2018 GucciGram &copy;
-    </div>
-</body>
-</html>
+<img src="/images/ggf.png" width="290" height="75" alt="GucciGram" title="GucciGram" class="center-img" />
+<div class="anons">
+    <form asp-action="RegistrationForm" method="post">
+        <div asp-validation-summary="All"></div>
+        <table>
+            <tr>
+                <td><label asp-for="UserName">Your Name on page:</label></td>
+                <td><input asp-for="UserName" type="text" placeholder="Enter Your Name" /></td>
+            </tr>
+            <tr>
+                <td><label asp-for="Email">Your email:</label></td>
+                <td><input asp-for="Email" type="email" placeholder="Enter Your email" /></td>
+            </tr>
+            <tr>
+                <td><label asp-for="Password">Your password:</label></td>
+                <td><input asp-for="Password" type="text" placeholder="Enter Your password" /></td>
+            </tr>
+            <tr>
+                <td><label asp-for="GenderID">Gender:</label></td>
+                <td>
+                    <select asp-for="GenderID">
+                        <option value="">Choose an option</option>
+                        <option value="true">Gentleman</option>
+                        <option value="flase">Mademoiselle</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <button type="submit" class="centre-btm" style="width:90px;height:25px">Complete</button>
+    </form>
+</div>

@@ -25,7 +25,14 @@ namespace GucciGramService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<IdentityDbContext>(options => options.UseSqlServer(Configuration["Data:GucciGramDatabase:IdentityConnectionString"]));
-            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<IdentityDbContext>().AddDefaultTokenProviders();
+            services.AddIdentity<User, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 6;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireDigit = false;
+            }).AddEntityFrameworkStores<IdentityDbContext>().AddDefaultTokenProviders();
             services.AddMvc();
         }
 
