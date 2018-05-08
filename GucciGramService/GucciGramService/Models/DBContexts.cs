@@ -13,4 +13,20 @@ namespace GucciGramService.Models
         public IdentityDbContext(DbContextOptions<IdentityDbContext> options)
             : base(options) { }
     }
+
+    public class GeneralDbContext : DbContext
+    {
+        public GeneralDbContext(DbContextOptions<GeneralDbContext> options)
+            : base(options) { }
+
+        public virtual DbSet<Post> Posts { get; set; }
+    }
+
+    public class SearchDbContext : DbContext
+    {
+        public SearchDbContext(DbContextOptions<SearchDbContext> options)
+            : base(options) { }
+        
+        public virtual DbSet<Search> Searches { get; set; }
+    }
 }

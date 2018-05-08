@@ -17,7 +17,7 @@
                         <a asp-controller="Home" asp-action="Index">Feed</a>
                         @if (User?.Identity?.IsAuthenticated ?? false)
                         {
-                            <a asp-controller="Home" asp-action="UserPage">Home Page</a>
+                            <a asp-controller="Home" asp-action="UserPage/@User.Identity.Name">User Page</a>
                             <a asp-controller="Account" asp-action="Logout">Logout</a>
                         }
                         else

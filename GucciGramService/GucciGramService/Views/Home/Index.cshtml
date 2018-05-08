@@ -1,6 +1,8 @@
-﻿<form action="" method="post" class="search">
-    <input type="search" name="" placeholder="Search" class="input" />
-    <input type="submit" name="" value="" class="submit" />
+﻿@model List<PostViewModel>
+
+<form asp-controller="Searche" asp-action="Find" method="post" class="search">
+    <input type="search" name="request" placeholder="Search" class="input" />
+    <input type="submit" class="submit" />
 </form>
 
 <img src="/images/ggf.png" width="290" height="75" alt="GucciGram" title="GucciGram" class="center-img" />
@@ -9,21 +11,40 @@
     <div class="ll">
         <h3> TOP 10 </h3>
     </div>
-    <a asp-action="Index">
-        <img src="/avatars/image.jpg" width="25" height="25" class="leftimg" />
-    </a>
-    <div class="up">
-        <a asp-action="Index">Ostap</a>
+    <div>
+        @if (Model.Count == 0)
+        {
+        <h2> No posts yet </h2>
+        }
+        else
+        {
+            foreach (var post in Model)
+            {
+                <div>
+                    <div class="up">
+                        <a asp-controller="Home" asp-action="UserPage/@post.GetUserName().Result" user-name="@post.UserID"></a>
+                    </div>
+                    <img src="/Home/ViewImage/@post.PostID" width="450" height="400" />
+                    <form action="" method="post" class="search1">
+                        <input type="submit" name="" value="" class="submit1" />
+                    </form>
+                    <div class="up1">
+                        @post.LikeQuantity
+                    </div>
+                    <div class="textik">
+                        <p>@post.Description</p>
+                        <p>@post.Date</p>
+                        @foreach (var comment in post.Comments)
+                         {
+                            <a asp-action="Index/UserPage/@comment.UserID" user-name="@comment.UserID"></a>
+                            <p>@comment.Description</p>
+                            <p>@comment.Date</p>
+                         }
+                    </div>
+                    <hr />
+                </div>
+            }
+        }
     </div>
-    <img src="/photos/photo.jpg" width="450" height="400" />
-    <form action="" method="post" class="search1">
-        <input type="submit" name="" value="" class="submit1" />
-    </form>
-    <div class="up1">
-        1337
-    </div>
-    <div class="textik">
-        <p>Description: </p>
-        <p>Comments: </p>
-    </div>
+
 </div>

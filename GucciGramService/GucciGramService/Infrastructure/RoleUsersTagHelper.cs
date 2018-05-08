@@ -32,7 +32,7 @@ namespace GucciGramService.Infrastructure
                 {
                     if (await userManager.IsInRoleAsync(user, role.Name))
                     {
-                        roles.Add(role.Name);
+                        roles.Add(role.Name); /// ADD COMMENTS SOMEWERE HERE
                     }
                 }
             }

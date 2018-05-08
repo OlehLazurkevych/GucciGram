@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using GucciGramService.Models;
@@ -91,7 +92,8 @@ namespace GucciGramService.Controllers
                 User user = new User
                 {
                     UserName = model.UserName,
-                    Email = model.Email
+                    Email = model.Email,
+                    IsMale = model.IsMale ?? true
                 };
                 if (await userManager.FindByEmailAsync(model.Email) == null)
                 {

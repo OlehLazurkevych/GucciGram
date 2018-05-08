@@ -24,7 +24,9 @@ namespace GucciGramService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<IdentityDbContext>(options => options.UseSqlServer(Configuration["Data:GucciGramDatabase:IdentityConnectionString"]));
+            services.AddDbContext<IdentityDbContext>(options => options.UseSqlServer(Configuration["Data:GucciGramDatabase:GeneralConnectionString"]));
+            services.AddDbContext<GeneralDbContext>(options => options.UseSqlServer(Configuration["Data:GucciGramDatabase:GeneralConnectionString"]));
+            services.AddDbContext<SearchDbContext>(options => options.UseSqlServer(Configuration["Data:GucciGramDatabase:GeneralConnectionString"]));
             services.AddIdentity<User, IdentityRole>(options =>
             {
                 options.Password.RequiredLength = 6;
