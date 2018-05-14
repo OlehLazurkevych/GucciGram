@@ -43,7 +43,8 @@
                         }
                     </div>
                     <img src="/Home/ViewImage/@post.PostID" width="450" height="400" />
-                    <form action="" method="post" class="search1">
+                    <form action="/Like/SetLike" method="post" class="search1">
+                        <input type="hidden" name="PostId" value="@post.PostID"/>
                         <input type="submit" name="" value="" class="submit1" />
                     </form>
                     <div class="up1">

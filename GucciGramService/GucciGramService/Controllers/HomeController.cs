@@ -14,11 +14,15 @@ namespace GucciGramService.Controllers
     {
         private UserManager<User> userManager;
         private GeneralDbContext generalDbContext;
+        private LikeDbContext likeDbContext;
+        private CommentDbContext commentDbContext;
 
-        public HomeController(UserManager<User> userManager, GeneralDbContext generalDbContext)
+        public HomeController(UserManager<User> userManager, GeneralDbContext generalDbContext, LikeDbContext likeDbContext, CommentDbContext commentDbContext)
         {
             this.userManager = userManager;
             this.generalDbContext = generalDbContext;
+            this.likeDbContext = likeDbContext;
+            this.commentDbContext = commentDbContext;
         }
 
         /*   Action methods   */
@@ -33,7 +37,7 @@ namespace GucciGramService.Controllers
             List<PostViewModel> result = new List<PostViewModel>();
             foreach(var post in dbresult)
             {
-                result.Add(new PostViewModel(post, userManager));
+                result.Add(new PostViewModel(post, userManager, generalDbContext, likeDbContext, commentDbContext));
             }
 
             return View(result);
@@ -51,7 +55,7 @@ namespace GucciGramService.Controllers
             {
                 if(post.UserID == user.Id)
                 {
-                    result.Posts.Add(new PostViewModel(post, userManager));
+                    result.Posts.Add(new PostViewModel(post, userManager, generalDbContext, likeDbContext, commentDbContext));
                 }
             }
 

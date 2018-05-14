@@ -196,28 +196,29 @@ div.info11{
   color: #333;
 }
 
-.search1 .submit1 {
- 
+.submit1 {
+  background-color: none;
   position: absolute;
-  
-  -moz-box-sizing: border-box;
-  box-sizing: none;
-
-  box-shadow: inset 0 0 5px rgba(0,0,0,0.1), inset 0 1px 2px rgba(0,0,0,0.3);
-
-  border-radius: 100px;
   border:none;
-
-  background: #DCDCDC;
-  font: 13px Tahoma, Arial, sans-serif;
   color: #555;
-  outline: none;
   width: 30px;
-  height: 5%;
+  height: 30px;
 
   cursor: pointer;
   background: url(/images/like.png) 60% no-repeat;
   opacity: 0.5;
+}
+
+.NOTsubmit1 {
+    background-color: none;
+    position: absolute;
+    box-shadow: none;
+    border: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background: url(/images/active-like.png) 60% no-repeat;
+    opacity: 0.5;
 }
 
 .search1 .submit1:hover {

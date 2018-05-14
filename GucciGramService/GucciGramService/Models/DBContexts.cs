@@ -29,4 +29,20 @@ namespace GucciGramService.Models
         
         public virtual DbSet<Search> Searches { get; set; }
     }
+
+    public class LikeDbContext : DbContext
+    {
+        public LikeDbContext(DbContextOptions<LikeDbContext> options)
+            : base(options) { }
+
+        public virtual DbSet<PostLike> PostLikes { get; set; }
+    }
+
+    public class CommentDbContext : DbContext
+    {
+        public CommentDbContext(DbContextOptions<CommentDbContext> options)
+            : base(options) { }
+
+        public virtual DbSet<Comment> Comments { get; set; }
+    }
 }

@@ -26,7 +26,9 @@ namespace GucciGramService
         {
             services.AddDbContext<IdentityDbContext>(options => options.UseSqlServer(Configuration["Data:GucciGramDatabase:GeneralConnectionString"]));
             services.AddDbContext<GeneralDbContext>(options => options.UseSqlServer(Configuration["Data:GucciGramDatabase:GeneralConnectionString"]));
+            services.AddDbContext<CommentDbContext>(options => options.UseSqlServer(Configuration["Data:GucciGramDatabase:GeneralConnectionString"]));
             services.AddDbContext<SearchDbContext>(options => options.UseSqlServer(Configuration["Data:GucciGramDatabase:GeneralConnectionString"]));
+            services.AddDbContext<LikeDbContext>(options => options.UseSqlServer(Configuration["Data:GucciGramDatabase:GeneralConnectionString"]));
             services.AddIdentity<User, IdentityRole>(options =>
             {
                 options.Password.RequiredLength = 6;
