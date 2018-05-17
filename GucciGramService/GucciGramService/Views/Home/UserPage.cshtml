@@ -16,6 +16,9 @@
             <form action="/Post/AddPost">
                 <button type="submit" class="btn btn-sm btn-primary">Add Post</button>
             </form>
+            <form action="/Account/Edit">
+                <button type="submit" class="btn btn-sm btn-primary">Edit User Details</button>
+            </form>
         }
     </div>
 
@@ -43,22 +46,44 @@
                         }
                     </div>
                     <img src="/Home/ViewImage/@post.PostID" width="450" height="400" />
-                    <form action="/Like/SetLike" method="post" class="search1">
-                        <input type="hidden" name="PostId" value="@post.PostID"/>
-                        <input type="submit" name="" value="" class="submit1" />
-                    </form>
-                    <div class="up1">
+                    @if (User?.Identity?.IsAuthenticated ?? false)
+                    {
+                        @if (post.LikedByUser(User.Identity.Name).Result)
+                        {
+                            <input class="NOTsubmit1" />
+                        }
+                        else
+                        {
+                            <form action="/Like/SetLike" method="post" class="search1">
+                                <input type="hidden" name="PostId" value="@post.PostID" />
+                                <input type="submit" name="" value="" class="submit1" />
+                            </form>
+                        }
+                    }
+                    else
+                    {
+                         <input class="NOTsubmit1" />
+                    }
+                    <div class="up1" id="LikeQuantity">
                         @post.LikeQuantity
                     </div>
                     <div class="textik">
                         <p>@post.Description</p>
-                        <p>@post.Date</p>
-                        @foreach(var comment in post.Comments)
+                        <p class="DateDay">@post.Date.ToString(@"MM\/dd\/yyyy")</p>
+                        @if (User?.Identity?.IsAuthenticated ?? false)
                         {
-                            <a asp-action="Index/UserPage/@comment.UserID" user-name="@comment.UserID"></a>
-                            <p>@comment.Description</p>
-                            <p>@comment.Date</p>
+                            <form asp-controller="Comment" asp-action="Post" method="post">
+                                <input type="hidden" name="PostId" value="@post.PostID" />
+                                <input name="Description" class="form-control" />
+                                <button type="submit" class="btn btn-secondary">comment</button>
+                            </form>
                         }
+                        @foreach (var comment in post.Comments)
+                         {
+                            <a asp-controller="Home" asp-action="UserPage/@comment.UserID" user-name="@comment.UserID"></a>
+                            <p>@comment.Description</p>
+                            <p class="DateDay">@comment.Date.ToString(@"MM\/dd\/yyyy")</p>
+                         }
                     </div>
                     <hr />
                 </div>

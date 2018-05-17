@@ -279,3 +279,8 @@ div.clear{clear: both;}
     background-color: crimson;
     color: white;
 }
+
+p.DateDay {
+    font-size: 12px;
+    color: burlywood;
+}

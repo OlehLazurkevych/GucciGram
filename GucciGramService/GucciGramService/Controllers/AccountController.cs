@@ -124,5 +124,79 @@ namespace GucciGramService.Controllers
             }
             return View(model);
         }
+
+        [Authorize]
+        public async Task<IActionResult> Edit()
+        {
+            User user = await userManager.FindByNameAsync(this.User.Identity.Name);
+            EditModel model = new EditModel()
+            {
+                UserName = user.UserName,
+                Email = user.Email,
+                Bio = user.Bio
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(EditModel model)
+        {
+            User user = await userManager.FindByNameAsync(this.User.Identity.Name);
+
+            if (model.UserName != user.UserName && model.UserName != "")
+            {
+                user.UserName = model.UserName;
+            }
+            if (model.Email != user.Email && model.Email != "")
+            {
+                user.Email = model.Email;
+            }
+            if (model.NewPassword != null)
+            {
+                if (model.NewPassword != "")
+                {
+                    if (model.OldPassword != null)
+                    {
+                        if (model.OldPassword != "")
+                        {
+                            Microsoft.AspNetCore.Identity.SignInResult result2 = await signInManager.CheckPasswordSignInAsync(user, model.OldPassword, false);
+                            if (result2.Succeeded)
+                            {
+                                await userManager.ResetPasswordAsync(user, userManager.GeneratePasswordResetTokenAsync(user).Result, model.NewPassword);
+                            }
+                            else
+                            {
+                                ModelState.AddModelError("", "Wrong old password");
+                            }
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("", "Enter old password");
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Enter old password");
+                    }
+                }
+            }
+
+            user.Bio = model.Bio;
+
+            IdentityResult result = await userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                return Redirect("/Home/UserPage/" + user.UserName ?? "/");
+            }
+            else
+            {
+                AddErrorsFromResult(result);
+            }
+                    
+            return View(model);
+        }
     }
 }

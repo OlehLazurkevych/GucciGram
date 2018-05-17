@@ -48,6 +48,10 @@ namespace GucciGramService.Controllers
         {
             UserPageViewModel result = new UserPageViewModel();
             User user = await userManager.FindByNameAsync(id);
+            if(user == null)
+            {
+                user = await userManager.FindByIdAsync(id);
+            }
             result.UserName = user.UserName;
             result.Bio = user.Bio;
 

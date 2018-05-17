@@ -48,7 +48,7 @@
                     </div>
                     <div class="textik">
                         <p>@post.Description</p>
-                        <p>@post.Date</p>
+                        <p class="DateDay">@post.Date.ToString(@"MM\/dd\/yyyy")</p>
                         @if (User?.Identity?.IsAuthenticated ?? false)
                         {
                             <form asp-controller="Comment" asp-action="Post" method="post">
@@ -59,10 +59,9 @@
                         }
                         @foreach (var comment in post.Comments)
                          {
-                            <hr />
-                            <a asp-action="Index/UserPage/@comment.UserID" user-name="@comment.UserID"></a>
+                            <a asp-controller="Home" asp-action="UserPage/@comment.UserID" user-name="@comment.UserID"></a>
                             <p>@comment.Description</p>
-                            <p>@comment.Date</p>
+                            <p class="DateDay">@comment.Date.ToString(@"MM\/dd\/yyyy")</p>
                          }
                     </div>
                     <hr />
