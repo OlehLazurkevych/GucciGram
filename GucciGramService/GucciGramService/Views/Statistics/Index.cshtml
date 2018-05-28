@@ -1,0 +1,20 @@
+﻿@model StatisticsViewModel
+
+<h2 style="color: crimson">Madmoiseles on GucciGram: @Model.FemailQuantity</h2>
+<h2 style="color: dodgerblue">Gentlemans on GucciGram: @Model.MailQuantity</h2>
+<hr/>
+<h3 style="color: crimson">Posts quantity from madmoiseles: @Model.FemailPostQuantity</h3>
+<h3 style="color: dodgerblue">Posts quantity from gentlemans: @Model.MailPostQuantity</h3>
+<hr />
+<h3 style="color: crimson">Avarange like quantity on madmoiseles posts: @Model.AvarangeLikeQFem</h3>
+<h3 style="color: dodgerblue">Avarange like quantity on gentlemans posts: @Model.AvarangeLikeQMail</h3>
+<hr />
+<h3 style="color: crimson">Avarange comments quantity on madmoiseles posts: @Model.AvarangePostCommentsQFem</h3>
+<h3 style="color: dodgerblue">Avarange comments quantity on gentlemans posts: @Model.AvarangePostCommentsQMail</h3>
+<hr />
+<h3 style="color: orangered">Popular search requests:</h3>
+
+@foreach(var search in Model.Searches)
+{
+    <p style="color: burlywood">@search</p>
+}

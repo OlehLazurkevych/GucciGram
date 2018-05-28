@@ -7,6 +7,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 
 namespace GucciGramService.Controllers
 {
@@ -39,18 +40,24 @@ namespace GucciGramService.Controllers
             {
                 result.Add(new PostViewModel(post, userManager, generalDbContext, likeDbContext, commentDbContext));
             }
+            result.Reverse();
 
             return View(result);
         }
 
         [AllowAnonymous]
-        public async Task<ViewResult> UserPage(string id)
+        public async Task<IActionResult> UserPage(string id)
         {
             UserPageViewModel result = new UserPageViewModel();
             User user = await userManager.FindByNameAsync(id);
             if(user == null)
             {
                 user = await userManager.FindByIdAsync(id);
+            }
+            if(user == null)
+            {
+                return StatusCode(StatusCodes.Status404NotFound);
+                //return RedirectToAction("Error", "Index");
             }
             result.UserName = user.UserName;
             result.Bio = user.Bio;

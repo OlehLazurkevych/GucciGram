@@ -15,8 +15,14 @@
                 <div class="topmenu">
                     <aside>
                         <a asp-controller="Home" asp-action="Index">Feed</a>
+                        
                         @if (User?.Identity?.IsAuthenticated ?? false)
                         {
+                            @if (User.IsInRole("Administrator"))
+                            {
+                                <a asp-controller="Admin" asp-action="Index">Admin menu</a>
+                                <a asp-controller="Statistics" asp-action="Index">Statistics</a>
+                            }
                             <a asp-controller="Home" asp-action="UserPage/@User.Identity.Name">User Page</a>
                             <a asp-controller="Account" asp-action="Logout">Logout</a>
                         }

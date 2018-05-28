@@ -13,12 +13,18 @@
     <div>
         @if (User.Identity.Name == Model.UserName)
         {
-            <form action="/Post/AddPost">
-                <button type="submit" class="btn btn-sm btn-primary">Add Post</button>
-            </form>
-            <form action="/Account/Edit">
-                <button type="submit" class="btn btn-sm btn-primary">Edit User Details</button>
-            </form>
+            <ul style="list-style-type: none; overflow: hidden;">
+                <li style="float: left;">
+                    <form action="/Post/AddPost" style="display: block; margin: 0px 5px 0px 60px;">
+                        <button type="submit" class="btn btn-sm btn-primary" style="width: 120px;">Create Post</button>
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="/Account/Edit" style="display: block;">
+                        <button type="submit" class="btn btn-sm btn-primary" style="width: 120px;">Edit Profile</button>
+                    </form>
+                </li>
+            </ul>
         }
     </div>
 
@@ -34,18 +40,21 @@
                 <div>
                     <div class="up">
                         <a asp-controller="Home" asp-action="UserPage/@post.GetUserName().Result" user-name="@post.UserID"></a>
-                        @if (User?.Identity?.IsAuthenticated ?? false)
+                        
+                    </div>
+                    <img src="/Home/ViewImage/@post.PostID" width="450" height="400" />
+                    @if (User?.Identity?.IsAuthenticated ?? false)
                         {
                             @if (User.IsInRole("Administrator") || User.IsInRole("Moderator") || User.Identity.Name == post.GetUserName().Result)
                             {
-                                 <form asp-controller="Post" asp-action="DeletePost" method="post">
-                                     <input type="hidden" name="PostID" value="@post.PostID" />
-                                     <button type="submit" class="deleteBtn">Delete this</button>
-                                 </form>
+                            <div style="float: right; padding: 5px 10px 0px 0px;">
+                                <form asp-controller="Post" asp-action="DeletePost" method="post">
+                                    <input type="hidden" name="PostID" value="@post.PostID" />
+                                    <button type="submit" class="deleteBtn">Delete this post</button>
+                                </form>
+                            </div>
                             }
                         }
-                    </div>
-                    <img src="/Home/ViewImage/@post.PostID" width="450" height="400" />
                     @if (User?.Identity?.IsAuthenticated ?? false)
                     {
                         @if (post.LikedByUser(User.Identity.Name).Result)
@@ -74,8 +83,9 @@
                         {
                             <form asp-controller="Comment" asp-action="Post" method="post">
                                 <input type="hidden" name="PostId" value="@post.PostID" />
-                                <input name="Description" class="form-control" />
-                                <button type="submit" class="btn btn-secondary">comment</button>
+                                <div style="float: left; width: 365px;"><input name="Description" class="form-control" /></div>
+                                <div style="float: right; "><button type="submit" class="btn btn-secondary">comment</button></div>
+                                <div style="height: 50px; width: 5px;"></div>
                             </form>
                         }
                         @foreach (var comment in post.Comments)

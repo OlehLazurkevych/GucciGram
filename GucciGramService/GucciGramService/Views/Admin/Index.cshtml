@@ -28,8 +28,8 @@
                 @if (!line.Value)
                 {
                     <form asp-action="Delete" asp-route-id="@line.Key.Id" method="post">
-                        <a class="btn btn-sm btn-primary" asp-action="SetRole" asp-route-id="@line.Key.Id">Set Role</a>
-                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        <a class="btn btn-sm btn-primary" style="width: 100px; margin-left: 50px;" asp-action="SetRole" asp-route-id="@line.Key.Id">Set Role</a>
+                        <button type="submit" class="btn btn-sm btn-danger" style="width: 100px; margin-top: 5px; margin-left: 50px;">Delete</button>
                     </form>
                 }
             </td>

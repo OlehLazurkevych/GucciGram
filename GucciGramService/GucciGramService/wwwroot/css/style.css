@@ -4,6 +4,17 @@ a{
     text-decoration: none;
 }
 
+hr {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: dotted;
+    border-width: 0.5px;
+    border-color: darkgrey;
+}
+
 /*structura sayta*/
 div.mid{width: 1000px; margin: 0 auto;}
 div.header{
@@ -90,6 +101,7 @@ div.anons p {text-shadow: 1px 1px 0 #fff;}
 }
 
 .search .submit {
+    border: none;
     position: absolute;
     width: 30px;
     height: 5%;
@@ -265,7 +277,7 @@ div.clear{clear: both;}
 }
 
 .deleteBtn {
-    width: 70px;
+    width: 110px;
     height: 20px;
     border: none;
     font-size: 10px;
@@ -273,6 +285,7 @@ div.clear{clear: both;}
     color: crimson;
     font-family: Arial;
     border-radius: 20px;
+    margin-top: 1px;
 }
 
 .deleteBtn:hover {
