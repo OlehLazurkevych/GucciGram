@@ -30,7 +30,7 @@ namespace GucciGramService.Tests
             DbContextOptionsBuilder<CommentDbContext> CommentDbContextBuilder = new DbContextOptionsBuilder<CommentDbContext>(new DbContextOptions<CommentDbContext>());
             DbContextOptionsBuilder<SearchDbContext> SearchDbContextBuilder = new DbContextOptionsBuilder<SearchDbContext>(new DbContextOptions<SearchDbContext>());
             DbContextOptionsBuilder<LikeDbContext> LikeDbContextBuilder = new DbContextOptionsBuilder<LikeDbContext>(new DbContextOptions<LikeDbContext>());
-            
+
             identityDbContext = new IdentityDbContext(IdentityDbContextBuilder.UseSqlServer("Server=(local)\\GUCCIGRAMSERVER;Database=GucciGram_Database;Trusted_Connection=True;MultipleActiveResultSets=true").Options);
             generalDbContext = new GeneralDbContext(GeneralDbContextBuilder.UseSqlServer("Server=(local)\\GUCCIGRAMSERVER;Database=GucciGram_Database;Trusted_Connection=True;MultipleActiveResultSets=true").Options); ;
             commentDbContext = new CommentDbContext(CommentDbContextBuilder.UseSqlServer("Server=(local)\\GUCCIGRAMSERVER;Database=GucciGram_Database;Trusted_Connection=True;MultipleActiveResultSets=true").Options); ;
@@ -48,8 +48,10 @@ namespace GucciGramService.Tests
 
             // Assert
             var viewResult = Assert.IsType<ViewResult>(result);
-            //var model = Assert.IsAssignableFrom<List<PostViewModel>>(viewResult.ViewData.Model);
-            //Assert.Equal(2, model.Count());
+            var model = Assert.IsAssignableFrom<List<PostViewModel>>(viewResult.ViewData.Model);
+            Assert.True(model.Count() <= 10);
         }
+
+        [Fact]
     }
 }

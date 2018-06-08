@@ -57,7 +57,6 @@ namespace GucciGramService.Controllers
             if(user == null)
             {
                 return StatusCode(StatusCodes.Status404NotFound);
-                //return RedirectToAction("Error", "Index");
             }
             result.UserName = user.UserName;
             result.Bio = user.Bio;
