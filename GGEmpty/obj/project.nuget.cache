@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "3mv4TKZS9LVzqFil8UedMmHPV9qBBgUh3/Jpnmh4QLZyK+qfuNkTR1OIZPecCzgYC2bVgWzR+g8Io8hiwDCOXw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\olazu\\source\\repos\\GGEmpty\\GGEmpty\\GGEmpty.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://artifactory.bddevops.io/artifactory/api/nuget/BD-nuget'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    }
+  ]
+}
