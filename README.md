@@ -1,5 +1,5 @@
 # GucciGram
-Implementation of Designing Software Systems task
+Implementation of university task
 GoogleDrive: https://drive.google.com/open?id=1HJqfQj6ugJXDXxATAT1lrqL5-TSP3D2j
 
 ![telegram-cloud-photo-size-2-5344063159297754538-x](https://user-images.githubusercontent.com/20316157/212575208-2104c5c6-a445-41b4-aacb-5b793901da35.jpg)
